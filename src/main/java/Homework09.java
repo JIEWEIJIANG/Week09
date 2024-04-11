@@ -29,6 +29,35 @@ We can see that 28 is the first triangle number to have over five divisors.
 What is the value of the first triangle number to have over one hundred divisors?
     
     */
-    
+    // Method to calculate triangle numbers
+    public static int triangleNumber(int n) {
+        return n * (n + 1) / 2;
+    }
+
+    // Method to count the number of divisors of a given number
+    public static int countDivisors(int number) {
+        int count = 0;
+        for (int i = 1; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                if (number / i == i) {
+                    count++;
+                } else {
+                    count += 2;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int divisors = 100;//change to over any divisors 
+        int n = 1;
+        int triangleNum = triangleNumber(n);
+        while (countDivisors(triangleNum) < divisors) {
+            n++;
+            triangleNum = triangleNumber(n);
+        }
+        System.out.println("The first triangle number with over " + divisors + " divisors is: " + triangleNum);
+    }
     
 }
